@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Diagnostics;
 using System.IO;
+using System.Globalization;
 
 namespace SimpleMultiThreadedMllpHl7Server
 {
@@ -140,13 +141,15 @@ namespace SimpleMultiThreadedMllpHl7Server
                                 var xmlParser = new DefaultXMLParser();
 
                                 // print out the message that we constructed
-                                LogToDebugConsole("Message was constructed successfully..." + "\n");
-
+                                //LogToDebugConsole("Message was constructed successfully..." + "\n");
+                                //var dateString = DateTime.Now.ToString("yyyyMMdd hhmmss");
+                                //string Filename = String.Concat("testXmlOutputFile.xml",dateString);
                                 // serialize the message to pipe delimited output file
-                                WriteMessageFile(pipeParser, hl7Message, "C:\\HL7TestOutputs", "testPipeDelimitedOutputFile.txt");
+                                WriteMessageFile(pipeParser, hl7Message, "C:\\HL7TestOutputs", String.Concat("testXmlOutputFile", DateTime.Now.ToString("yyyyMMddhhmmss"),".txt"));
 
                                 // serialize the message to XML format output file
-                                WriteMessageFile(xmlParser, hl7Message, "C:\\HL7TestOutputs", "testXmlOutputFile.xml");
+                                WriteMessageFile(xmlParser, hl7Message, "C:\\HL7TestOutputs", String.Concat("testXmlOutputFile.xml", DateTime.Now.ToString("yyyyMMddhhmmss"),".xml"))
+                                    ;
 
                             }
                             catch (Exception e)
