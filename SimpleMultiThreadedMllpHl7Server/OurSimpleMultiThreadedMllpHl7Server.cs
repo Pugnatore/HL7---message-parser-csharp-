@@ -15,9 +15,9 @@ namespace SimpleMultiThreadedMllpHl7Server
     class OurSimpleMultiThreadedMllpHl7Server
     {
         private TcpListener _tcpListener;
-        private static char START_OF_BLOCK = (char)0x0B;
+        private static char START_OF_BLOCK = (char)0x0B; // \v;
         private static char END_OF_BLOCK = (char)0x1C;
-        private static char CARRIAGE_RETURN = (char)13;
+        private static char CARRIAGE_RETURN = (char)13; // /r
         private static int MESSAGE_CONTROL_ID_LOCATION = 9;
         private static char FIELD_DELIMITER = '|';
 
@@ -94,7 +94,7 @@ namespace SimpleMultiThreadedMllpHl7Server
                             //create a HL7 acknowledgement message
                             var ackMessage = GetSimpleAcknowledgementMessage(hl7MessageData);
 
-                            Console.WriteLine(ackMessage);
+                            //Console.Write(ackMessage.ToString());
 
                             //echo the received data back to the client 
                             var buffer = Encoding.UTF8.GetBytes(ackMessage);
